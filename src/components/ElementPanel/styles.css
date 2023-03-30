@@ -5,8 +5,9 @@
 
   position: relative;
   display: flex;
-  align-items: center;
   flex-direction: column;
 
   padding: 24px;
+
+  z-index: 1000;
 }

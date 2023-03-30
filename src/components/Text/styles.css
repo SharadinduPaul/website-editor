@@ -1,0 +1,15 @@
+.text-main {
+  color: var(--color-primary);
+}
+.text-main.faded {
+  color: var(--color-secondary);
+}
+
+h6.text-main {
+  font-size: 14px;
+  font-weight: 700;
+}
+p.text-main {
+  font-size: 13px;
+  font-weight: 400;
+}

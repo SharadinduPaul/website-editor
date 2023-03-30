@@ -1,16 +1,25 @@
 import React from "react";
 import "./App.css";
 import { Canvas, ElementPanel, Topbar } from "./components";
+import { ElementContext } from "./utils/context";
+import { elementReducer } from "./utils/reducer";
 
 const App = () => {
+  const [elements, dispatch] = React.useReducer(elementReducer, []);
+
+  React.useEffect(() => {
+    console.log(elements);
+  }, [elements]);
   return (
-    <div className="app">
-      <Topbar />
-      <div className="container">
-        <Canvas />
-        <ElementPanel />
+    <ElementContext.Provider value={{ elements, dispatch }}>
+      <div className="app">
+        <Topbar />
+        <div className="container">
+          <Canvas />
+          <ElementPanel />
+        </div>
       </div>
-    </div>
+    </ElementContext.Provider>
   );
 };
 

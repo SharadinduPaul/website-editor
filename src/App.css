@@ -31,6 +31,9 @@ body,
 :root {
   --bg-primary: #fff;
   --bg-secondary: #e9eff2;
+  --color-primary: #1A1A1A;
+  --color-secondary: #707880;
+  --border: #E9EFF2
 }
 
 .app > .container {

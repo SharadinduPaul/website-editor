@@ -1,5 +1,6 @@
 .topbar-main {
-  height: 3.6rem;
+  min-height: 60px;
   width: 100%;
   background-color: var(--bg-primary);
+  z-index: 1000;
 }

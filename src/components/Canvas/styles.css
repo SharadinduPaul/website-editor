@@ -2,4 +2,9 @@
   flex: 1;
   background-color: aliceblue;
   height: 100%;
+  overflow: hidden;
+}
+.canvas-main:active{
+  background-image: url('../../assets/pattern.png');
+  background-size: 25px 25px;
 }

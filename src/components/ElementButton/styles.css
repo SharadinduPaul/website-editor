@@ -1,0 +1,30 @@
+.element-button {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  height: 6rem;
+  width: 100%;
+
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  position: relative;
+
+  transition: 0.2s;
+}
+
+.element-button > img {
+  height: 3rem;
+  width: 3rem;
+  min-width: 3rem;
+  box-shadow: 3px 4px 20px #a0b8c789;
+}
+
+.element-button *{
+    user-select: none;
+    pointer-events: none;
+}
+
+.element-button:active{
+    background-color: #ebebeb;
+}

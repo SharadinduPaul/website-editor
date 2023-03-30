@@ -1,0 +1,28 @@
+.element {
+    --block: 25px;
+  position: absolute;
+  cursor: grab;
+  
+    resize: both;
+    overflow: auto;
+}
+.element:active{
+    cursor: grabbing;
+}
+button.element {
+    border: none;
+    height:  calc(var(--block) * 1.5);
+    width:  calc(var(--block) * 6);
+    border-radius: 4px;
+    background-color: #72bbff;
+}
+input.element {
+    border: 1px solid #72bbff;;
+    outline: none;
+    border-radius: 4px;
+    
+    height:  calc(var(--block) * 1.5);
+    min-width:  calc(var(--block) * 12);
+
+    padding: 0 10px;
+}
