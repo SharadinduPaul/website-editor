@@ -1,0 +1,41 @@
+/* importing styles from google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* styling the parent elements */
+html,
+body,
+#root,
+.app {
+  max-height: 100%;
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* this selects every element */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  font-family: "Figtree", sans-serif;
+  box-sizing: border-box;
+}
+
+/* declaring css variables for consistency throughout the app :) */
+:root {
+  --bg-primary: #fff;
+  --bg-secondary: #e9eff2;
+}
+
+.app > .container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  background-color: #faf;
+}
