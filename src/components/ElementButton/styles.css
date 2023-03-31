@@ -18,6 +18,7 @@
   width: 3rem;
   min-width: 3rem;
   box-shadow: 3px 4px 20px #a0b8c789;
+  padding: 10px;
 }
 
 .element-button *{

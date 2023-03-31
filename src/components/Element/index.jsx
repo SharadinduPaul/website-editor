@@ -10,15 +10,20 @@ export const Element = ({
   varient = "button",
   top = "0",
   left = "0",
-  zIndex = "1"
+  zIndex = "1",
+  options = ["first", "second", "third"]
 }) => {
   const [position, setPosition] = React.useState({ x: left, y: top });
+  const [option, setOption] = React.useState("");
 
-  const { elements, dispatch } = React.useContext(ElementContext);
+  const { dispatch } = React.useContext(ElementContext);
 
   const elementRef = React.useRef(null);
+
+  //this keeps track of the position where the element was grabbed from
   const offsetRef = React.useRef({ x: 0, y: 0 });
 
+  //this runs each time a mousemove event is fired
   const handleMouseMove = (e) => {
     setPosition({ x: e.clientX, y: e.clientY });
     dispatch({
@@ -26,7 +31,7 @@ export const Element = ({
       payload: {
         id: id,
         top:
-          ((e.clientY - 60 - offsetRef.current.y) / blockSize).toFixed(0) *
+          ((e.clientY - offsetRef.current.y) / blockSize).toFixed(0) *
           blockSize,
         left:
           ((e.clientX - offsetRef.current.x) / blockSize).toFixed(0) * blockSize
@@ -34,7 +39,9 @@ export const Element = ({
     });
   };
 
-  const debouncedHandleMouseMove = throttle((e) => handleMouseMove(e), 100);
+  //throttled version of the handleMouseMove function
+  const throttledMouseMove = throttle((e) => handleMouseMove(e), 200);
+
   React.useEffect(() => {
     if (elementRef.current) {
       elementRef.current.addEventListener("mousedown", (e) => {
@@ -49,13 +56,16 @@ export const Element = ({
           x: e.offsetX,
           y: e.offsetY
         };
-        window.addEventListener("mousemove", debouncedHandleMouseMove);
+        //event: mousemove while mousedown
+        window.addEventListener("mousemove", throttledMouseMove);
       });
+      //event: mouseup
       window.addEventListener("mouseup", () => {
-        window.removeEventListener("mousemove", debouncedHandleMouseMove);
+        window.removeEventListener("mousemove", throttledMouseMove);
       });
     }
 
+    //to remove the event listener when unmounted
     return () => {
       if (elementRef.current) {
         elementRef.current.removeEventListener("mousedown", function () {});
@@ -63,6 +73,7 @@ export const Element = ({
     };
   }, []);
 
+  // cannot explain these... too much
   var Y =
     ((position.y - 60 - offsetRef.current.y) / blockSize).toFixed(0) *
     blockSize;
@@ -75,17 +86,48 @@ export const Element = ({
     zIndex: zIndex
   };
 
-  return varient === "button" ? (
-    <button ref={elementRef} className="element" style={style}>
-      Button
-    </button>
-  ) : varient === "text input" ? (
-    <input
-      ref={elementRef}
-      placeholder="Type here"
-      className="element"
-      type="text"
-      style={style}
-    />
-  ) : null;
+  return (
+    <div className="element" style={style}>
+      {varient === "button" ? (
+        <button ref={elementRef}>Button</button>
+      ) : varient === "text input" ? (
+        <input ref={elementRef} placeholder="Type here" type="text" />
+      ) : varient == "dropdown" ? (
+        <>
+          <div className="dropdown" ref={elementRef}>
+            {option ? option : "Select an option"}
+          </div>
+          <div className="options">
+            {options.map((option, index) => {
+              return (
+                <button key={index} onClick={() => setOption(option)}>
+                  {option}
+                </button>
+              );
+            })}
+          </div>
+        </>
+      ) : varient === "table" ? (
+        <div className="table" ref={elementRef}>
+          <p className="head">Name</p>
+          <p className="head">Age</p>
+          <p className="cell">Sharadindu Paul</p>
+          <p className="cell">21</p>
+          <p className="cell">Narendra Modi</p>
+          <p className="cell">72</p>
+        </div>
+      ) : null}
+      <div
+        className="close"
+        onClick={() =>
+          dispatch({
+            type: "REMOVE_ELEMENT",
+            payload: { id: id }
+          })
+        }
+      >
+        X
+      </div>
+    </div>
+  );
 };

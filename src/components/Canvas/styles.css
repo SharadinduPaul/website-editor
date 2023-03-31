@@ -1,10 +1,20 @@
 .canvas-main {
   flex: 1;
-  background-color: aliceblue;
+  display: block;
+  position: relative;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
+  background-color: aliceblue;
 }
 .canvas-main:active{
   background-image: url('../../assets/pattern.png');
   background-size: 25px 25px;
+}
+
+.canvas-main > .element-container{
+  position: relative;
+height: 100%;
+  min-width: 1000px;
+  max-width: 1000px;
+  overflow: hidden;
 }

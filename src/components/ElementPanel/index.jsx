@@ -5,22 +5,22 @@ import "./styles.css";
 
 const button_data = [
   {
-    image_url: "https://picsum.photos/200",
+    image_url: "https://cdn-icons-png.flaticon.com/512/4865/4865098.png",
     title: "Text Input",
     subTitle: "Supports Markdown or HTML"
   },
   {
-    image_url: "https://picsum.photos/201",
+    image_url: "https://cdn-icons-png.flaticon.com/512/5199/5199965.png",
     title: "Button",
     subTitle: "Trigger actions like run queries, export data etc."
   },
   {
-    image_url: "https://picsum.photos/202",
+    image_url: "https://cdn-icons-png.flaticon.com/512/8669/8669111.png",
     title: "Dropdown",
     subTitle: "Select from a set of options, with a dropdown."
   },
   {
-    image_url: "https://picsum.photos/203",
+    image_url: "https://cdn-icons-png.flaticon.com/512/4598/4598376.png",
     title: "Table",
     subTitle: "Display tabular data with pagination."
   }
