@@ -6,8 +6,9 @@ import "./styles.css";
 export const Canvas = () => {
   const { elements, dispatch } = React.useContext(ElementContext);
 
+  const canvasRef = React.useRef(null);
   return (
-    <div className={`canvas-main`}>
+    <div className={`canvas-main`} ref={canvasRef}>
       <div className="element-container">
         {elements?.map((item, index) => (
           <Element
@@ -17,6 +18,7 @@ export const Canvas = () => {
             top={item?.top}
             left={item?.left}
             zIndex={index + 1}
+            ref={canvasRef}
           />
         ))}
       </div>

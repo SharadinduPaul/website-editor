@@ -18,7 +18,7 @@
   background-color: #72bbff;
   user-select: none;
 }
-.element > input{
+.element > .input{
   border: 1px solid #72bbff;
   outline: none;
   overflow: hidden;
@@ -43,8 +43,7 @@
   align-items: center;
 }
 .element > .table{
-  height: calc(var(--block) * 4.5);
-  width: calc(var(--block) * 12);
+  width: max-content;
   background-color: #dbdbdb;
   border: 1px solid #cacaca;
 
@@ -52,7 +51,6 @@
   user-select: none;
   position: relative;
   display: grid;
-  grid-template-columns: auto auto;
   align-items: stretch;
   justify-items: stretch;
   gap: 1px;
@@ -62,12 +60,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  outline: none;
+  width: calc(var(--block) * 6);
+  height: calc(var(--block) * 1.5);
 }
 .element > .table > .cell{
   background-color: #f4f4f4;
 }
+.element > .table > .head{
+  font-weight: 600;
+}
+.element > .add-column{
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  height: 2rem;
+  width: max-content;
+z-index: 1000;
+  /* padding: 10px 0; */
+}
+.element  .span-button{
+  border: 1px solid var(--border);
+  border-radius: 4px;
+
+  padding: .4rem;
+  background-color: #6eff81;
+}
 
 
+.element:is(:hover, :focus-within) > .add-column{
+  display: flex
+}
 .element:hover > .options{
   display: flex
 }

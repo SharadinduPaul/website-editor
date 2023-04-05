@@ -12,6 +12,8 @@ const App = () => {
     getLocalData() ?? []
   );
 
+  const [cssProps, setCssProps] = React.useState({});
+
   //debouncing the expensive localStorage action
   const debouncedSaveData = React.useCallback(
     debounce((e) => setLocalData(e), 1000),
@@ -23,7 +25,9 @@ const App = () => {
     debouncedSaveData(elements);
   }, [elements]);
   return (
-    <ElementContext.Provider value={{ elements, dispatch }}>
+    <ElementContext.Provider
+      value={{ elements, dispatch, cssProps, setCssProps }}
+    >
       <div className="app">
         <Topbar />
         <div className="container">

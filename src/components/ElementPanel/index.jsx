@@ -27,35 +27,70 @@ const button_data = [
 ];
 
 export const ElementPanel = () => {
-  const { elements, dispatch } = React.useContext(ElementContext);
+  const { elements, dispatch, cssProps } = React.useContext(ElementContext);
+  const [showCss, setShowCss] = React.useState(false);
 
   const date = new Date();
-
   return (
     <div className="elementpanel-main">
-      <Text varient="header2" faded>
-        Components
-      </Text>
-      {button_data?.map((item, index) => {
-        const _id = date.getTime().toString();
-        return (
-          <ElementButton
-            key={index}
-            onClick={() =>
-              dispatch({
-                type: "ADD_ELEMENT",
-                payload: {
-                  id: _id,
-                  type: item.title,
-                  top: 60,
-                  left: 0
-                }
-              })
-            }
-            {...item}
-          />
-        );
-      })}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between"
+        }}
+      >
+        <Text varient="header2" faded>
+          Components
+        </Text>
+        <button
+          className="cssToggle"
+          onClick={() => setShowCss((prev) => !prev)}
+        >
+          {!showCss ? "CSS" : "Elements"}
+        </button>
+      </div>
+      {showCss ? (
+        <>
+          <div className="cssProps">
+            <Text>Background color:</Text>
+            <Text>{cssProps["background-color"]}</Text>
+          </div>
+          <div className="cssProps">
+            <Text>Color:</Text>
+            <Text>{cssProps["color"]}</Text>
+          </div>
+          <div className="cssProps">
+            <Text>Height</Text>
+            <Text>{cssProps["height"]}</Text>
+          </div>
+          <div className="cssProps">
+            <Text>Width</Text>
+            <Text>{cssProps["width"]}</Text>
+          </div>
+        </>
+      ) : (
+        button_data?.map((item, index) => {
+          const _id = date.getTime().toString();
+          return (
+            <ElementButton
+              key={index}
+              onClick={() =>
+                dispatch({
+                  type: "ADD_ELEMENT",
+                  payload: {
+                    id: _id,
+                    type: item.title,
+                    top: 60,
+                    left: 0
+                  }
+                })
+              }
+              {...item}
+            />
+          );
+        })
+      )}
     </div>
   );
 };
